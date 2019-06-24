@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Zertifikate" name="Zertifikate" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <decision id="Gesamt_Punktzahl" name="Bewerbung evaluieren">
+    <extensionElements>
+      <biodi:bounds x="559" y="210" width="180" height="80" />
+      <biodi:edge source="Berufs_Scoring">
+        <biodi:waypoints x="1293" y="372" />
+        <biodi:waypoints x="1293" y="220" />
+        <biodi:waypoints x="739" y="220" />
+      </biodi:edge>
+      <biodi:edge source="Unterlagen_Scoring">
+        <biodi:waypoints x="419" y="386" />
+        <biodi:waypoints x="419" y="262" />
+        <biodi:waypoints x="559" y="264" />
+      </biodi:edge>
+      <biodi:edge source="Ausbildungs_Scoring">
+        <biodi:waypoints x="896" y="373" />
+        <biodi:waypoints x="896" y="238" />
+        <biodi:waypoints x="740" y="238" />
+      </biodi:edge>
+      <biodi:edge source="BusinessKnowledgeModel_0kqtncz">
+        <biodi:waypoints x="522" y="218" />
+        <biodi:waypoints x="559" y="227" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredDecision href="#Berufs_Scoring" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Unterlagen_Scoring" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Ausbildungs_Scoring" />
+    </informationRequirement>
+    <knowledgeRequirement>
+      <requiredKnowledge href="#BusinessKnowledgeModel_0kqtncz" />
+    </knowledgeRequirement>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Punktzahl_Ausbildung">
+        <inputExpression id="inputExpression_1" typeRef="integer">
+          <text>Punktzahl_Ausbildung</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_04mg2xz" label="Scoring_Berufserfahrung">
+        <inputExpression id="LiteralExpression_180ta0i" typeRef="integer">
+          <text>Scoring_Berufserfahrung</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0e6bjvt" label="Scoring_Unterlagen">
+        <inputExpression id="LiteralExpression_0kauag5" typeRef="integer">
+          <text>Scoring_Unterlagen</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Scoring_Gesamt" name="Scoring_Gesamt" typeRef="integer" />
+      <rule id="DecisionRule_04n1wle">
+        <inputEntry id="UnaryTests_1yjswht">
+          <text>[1..50]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l4lkrd">
+          <text>[1..30]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_166rjah">
+          <text>[0..40]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gk31gr">
+          <text>Punktzahl_Ausbildung+Scoring_Berufserfahrung+Scoring_Unterlagen</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Ausbildungs_Scoring" name="Ausbildung">
+    <extensionElements>
+      <biodi:bounds x="806" y="373" width="180" height="80" />
+      <biodi:edge source="InputData_0tfbnko">
+        <biodi:waypoints x="975" y="369" />
+        <biodi:waypoints x="905" y="376" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1t5m0yr">
+        <biodi:waypoints x="949" y="435" />
+        <biodi:waypoints x="905" y="416" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1b08o6q">
+        <biodi:waypoints x="924" y="297" />
+        <biodi:waypoints x="854" y="373" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1pkddft">
+        <biodi:waypoints x="889" y="484" />
+        <biodi:waypoints x="876" y="453" />
+      </biodi:edge>
+      <biodi:edge source="KnowledgeSource_1k3283o">
+        <biodi:waypoints x="766" y="404" />
+        <biodi:waypoints x="806" y="404" />
+      </biodi:edge>
+      <biodi:edge source="Auslandserfahrung">
+        <biodi:waypoints x="1006" y="297" />
+        <biodi:waypoints x="941" y="373" />
+      </biodi:edge>
+      <biodi:edge source="Abschlussnote_Studium">
+        <biodi:waypoints x="1030" y="427" />
+        <biodi:waypoints x="986" y="422" />
+      </biodi:edge>
+      <biodi:edge source="Abschlussnote_Ausbildung">
+        <biodi:waypoints x="1003" y="484" />
+        <biodi:waypoints x="970" y="453" />
+      </biodi:edge>
+      <biodi:edge source="Bildungsgrad">
+        <biodi:waypoints x="1032" y="357" />
+        <biodi:waypoints x="986" y="383" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0tfbnko" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1t5m0yr" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1b08o6q" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1pkddft" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#Auslandserfahrung" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#Abschlussnote_Studium" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#Abschlussnote_Ausbildung" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#Bildungsgrad" />
+    </informationRequirement>
+    <authorityRequirement>
+      <requiredAuthority href="#KnowledgeSource_1k3283o" />
+    </authorityRequirement>
+    <decisionTable id="DecisionTable_15bi8yc">
+      <input id="InputClause_07l8wxy" label="Bildungsgrad">
+        <inputExpression id="LiteralExpression_0ntx38o" typeRef="string">
+          <text>Bildungsgrad</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1oez0hd">
+          <text>"Studium","Ausbildung","Keine Ausbildung"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1a780oo" label="Abschlussnote_Studium">
+        <inputExpression id="LiteralExpression_07u9rt8" typeRef="double">
+          <text>Abschlussnote_Studium</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0yktj2f" label="Abschlussnote_Ausbildung">
+        <inputExpression id="LiteralExpression_007q3pm" typeRef="string">
+          <text>Abschlussnote_Ausbildung</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1jjofox">
+          <text>"Sehr gut","gut","befriedigend","ausreichend"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1d09bhg" label="Auslandserfahrung">
+        <inputExpression id="LiteralExpression_0ker8hl" typeRef="boolean">
+          <text>Auslandserfahrung</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0ntgjsr" label="Punktzahl_Ausbildung" name="Punktzahl_Ausbildung" typeRef="integer" />
+      <rule id="DecisionRule_1h1cy49">
+        <inputEntry id="UnaryTests_1mfy3x5">
+          <text>"Studium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rp0fwe">
+          <text>[1..2]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0g06872">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05d25wl">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zv377p">
+          <text>50</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0akbw1b">
+        <inputEntry id="UnaryTests_0dn3pjf">
+          <text>"Studium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jcksxu">
+          <text>[1..2]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03e72pm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02ityqm">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0s9buo2">
+          <text>40</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_09y1dmd">
+        <inputEntry id="UnaryTests_15g7n3g">
+          <text>"Studium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dj1b4g">
+          <text>[2.5..3.5]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12mxf1v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l7zgmw">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0c3nz7z">
+          <text>40</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0699flr">
+        <inputEntry id="UnaryTests_0sw2xno">
+          <text>"Studium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cbd3nv">
+          <text>[2.5..3.5]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0teke97">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qwkc4w">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07uk0z8">
+          <text>35</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bp0ihj">
+        <inputEntry id="UnaryTests_1evw1ky">
+          <text>"Studium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fs5dx0">
+          <text>[3.6..4.0]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m5otvx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ek9qy2">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_041gqmv">
+          <text>35</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14ujf9c">
+        <inputEntry id="UnaryTests_1jvkkq0">
+          <text>"Studium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ry3k9i">
+          <text>[3.6..4.0]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m48vn2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_004zan6">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18wldie">
+          <text>30</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0srvv9e">
+        <inputEntry id="UnaryTests_1pwy236">
+          <text>"Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_133hpco">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j88nbh">
+          <text>"Sehr gut"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1o27ywi">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yv5gtz">
+          <text>30</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0aw94fj">
+        <inputEntry id="UnaryTests_1lhuneo">
+          <text>"Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_191ufdh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yqqi7b">
+          <text>"Sehr gut"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14aav1b">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1m6dpwp">
+          <text>25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06ylcd1">
+        <inputEntry id="UnaryTests_0lzttro">
+          <text>"Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u9okei">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1aix7cl">
+          <text>"gut"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wc9x7e">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_180sy9y">
+          <text>25</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0o3kzkv">
+        <inputEntry id="UnaryTests_0vnjz1i">
+          <text>"Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03tgipn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1stzwwu">
+          <text>"gut"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qh0qib">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ajhjz9">
+          <text>20</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1df0rbs">
+        <inputEntry id="UnaryTests_02awamg">
+          <text>"Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ghap46">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mw7qvd">
+          <text>"befriedigend"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12eydxa">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0l77vna">
+          <text>20</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10dfy0d">
+        <inputEntry id="UnaryTests_1safgi3">
+          <text>"Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j5mm04">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ocsd9n">
+          <text>"befriedigend"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1exhyc9">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1mb2bca">
+          <text>15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1bvfo7r">
+        <inputEntry id="UnaryTests_1rxdjro">
+          <text>"Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ublrbw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_105vsms">
+          <text>"ausreichend"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1862i1g">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_060lux1">
+          <text>15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_152t9kq">
+        <inputEntry id="UnaryTests_1hmpeq8">
+          <text>"Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jog9z3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03mwfmm">
+          <text>"ausreichend"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1y5ccy7">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0p321ks">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hj2ya9">
+        <inputEntry id="UnaryTests_011ce2q">
+          <text>"Keine Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vz2cbi">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qa0amq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03cz85k">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0n8o0ry">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0y6skwk">
+        <inputEntry id="UnaryTests_0bya7qc">
+          <text>"Keine Ausbildung"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u42jxx">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x41y8o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1c8zcpn">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0k8cljm">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Berufs_Scoring" name="Berufserfahrung">
+    <extensionElements>
+      <biodi:bounds x="1203" y="372" width="180" height="80" />
+      <biodi:edge source="InputData_0a72ir9">
+        <biodi:waypoints x="1335" y="411" />
+        <biodi:waypoints x="1302" y="411" />
+      </biodi:edge>
+      <biodi:edge source="Berufserfahrung_Jahre">
+        <biodi:waypoints x="1416" y="413" />
+        <biodi:waypoints x="1383" y="414" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0a72ir9" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#Berufserfahrung_Jahre" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_15objyd">
+      <input id="InputClause_0ak9bsd" label="Jahre der relevanten Berufserfahrung">
+        <inputExpression id="LiteralExpression_0nvwhfq" typeRef="integer">
+          <text>Berufserfahrung_Jahre</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1t8e1k3" label="Scoring_Berufserfahrung" name="Scoring_Berufserfahrung" typeRef="integer" />
+      <rule id="DecisionRule_059r05n">
+        <inputEntry id="UnaryTests_081g0fc">
+          <text>1,2</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1iu8gxs">
+          <text>5</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kklxl3">
+        <inputEntry id="UnaryTests_0xh7fyb">
+          <text>3,4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1folgfe">
+          <text>20</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ysx3dv">
+        <inputEntry id="UnaryTests_0tk2xys">
+          <text>&gt;4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1e3rgzj">
+          <text>30</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0lk61m1">
+        <inputEntry id="UnaryTests_0rt804j">
+          <text>0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0z97p9o">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Outputliste" name="Outputliste">
+    <extensionElements>
+      <biodi:bounds x="513" y="506" width="180" height="80" />
+      <biodi:edge source="Ausbildungs_Scoring">
+        <biodi:waypoints x="892" y="453" />
+        <biodi:waypoints x="892" y="531" />
+        <biodi:waypoints x="693" y="531" />
+      </biodi:edge>
+      <biodi:edge source="Berufs_Scoring">
+        <biodi:waypoints x="1293" y="452" />
+        <biodi:waypoints x="1293" y="565" />
+        <biodi:waypoints x="694" y="565" />
+      </biodi:edge>
+      <biodi:edge source="Unterlagen_Scoring">
+        <biodi:waypoints x="419" y="466" />
+        <biodi:waypoints x="419" y="535" />
+        <biodi:waypoints x="511" y="535" />
+      </biodi:edge>
+      <biodi:edge source="Gesamt_Punktzahl">
+        <biodi:waypoints x="603" y="290" />
+        <biodi:waypoints x="603" y="506" />
+      </biodi:edge>
+      <biodi:edge source="Decision_1s0v0kq">
+        <biodi:waypoints x="557" y="121" />
+        <biodi:waypoints x="156" y="121" />
+        <biodi:waypoints x="156" y="554" />
+        <biodi:waypoints x="513" y="554" />
+      </biodi:edge>
+    </extensionElements>
+    <variable id="InformationItem_04gdhvz" name="OutputArray" />
+    <informationRequirement>
+      <requiredDecision href="#Ausbildungs_Scoring" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Berufs_Scoring" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Unterlagen_Scoring" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Gesamt_Punktzahl" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_1s0v0kq" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0gssece" expressionLanguage="groovy">
+      <text>def OutputArray = [];
+
+OutputArray.addAll(String.valueOf(Scoring_Gesamt));
+OutputArray.addAll(result);
+
+return OutputArray;</text>
+    </literalExpression>
+  </decision>
+  <decision id="Unterlagen_Scoring" name="Unterlagen">
+    <extensionElements>
+      <biodi:bounds x="329" y="386" width="180" height="80" />
+      <biodi:edge source="InputData_1rah7fx">
+        <biodi:waypoints x="244" y="360" />
+        <biodi:waypoints x="256" y="386" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0cpk43v">
+        <biodi:waypoints x="224" y="469" />
+        <biodi:waypoints x="248" y="460" />
+      </biodi:edge>
+      <biodi:edge source="Anschreiben">
+        <biodi:waypoints x="293" y="441" />
+        <biodi:waypoints x="329" y="441" />
+      </biodi:edge>
+      <biodi:edge source="Zeugnisse">
+        <biodi:waypoints x="289" y="387" />
+        <biodi:waypoints x="329" y="400" />
+      </biodi:edge>
+      <biodi:edge source="Lebenslauf">
+        <biodi:waypoints x="356" y="342" />
+        <biodi:waypoints x="387" y="386" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0w0ckue">
+        <biodi:waypoints x="320" y="494" />
+        <biodi:waypoints x="337" y="466" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_1rah7fx" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#Anschreiben" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#Zeugnisse" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#Lebenslauf" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0w0ckue" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1cbfbmo" hitPolicy="COLLECT" aggregation="SUM">
+      <input id="InputClause_1w3qpgz" label="Zeugnisse">
+        <inputExpression id="LiteralExpression_02ejzef" typeRef="boolean">
+          <text>Zeugnisse</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_13jverv" label="Lebenslauf">
+        <inputExpression id="LiteralExpression_00kl4b6" typeRef="boolean">
+          <text>Lebenslauf</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0pf3bfo" label="Anschreiben">
+        <inputExpression id="LiteralExpression_1vhbjb2" typeRef="boolean">
+          <text>Anschreiben</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1e6icf5" label="Zertifikate">
+        <inputExpression id="LiteralExpression_1hqhyh8" typeRef="boolean">
+          <text>Zertifikate</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_10zgpg2" label="Scoring_Unterlagen" name="Scoring_Unterlagen" typeRef="integer" />
+      <rule id="DecisionRule_0p876u1">
+        <inputEntry id="UnaryTests_1anpxt1">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x5tgof">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b1qqzq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wa3ivb">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kegvvr">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1r2lj1g">
+        <inputEntry id="UnaryTests_1ys0jp8">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1h0zafn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_139veni">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sfxc2l">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bkhndn">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0surp34">
+        <inputEntry id="UnaryTests_181q1vf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cf151d">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jxd6l8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nlzucs">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0un2cqi">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gymb4z">
+        <inputEntry id="UnaryTests_1wdy1tm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ved4gy">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g9szl1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0n6ww3z">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_046brfg">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tykn41">
+        <inputEntry id="UnaryTests_1qw9c3s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pnprz8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e4fjx6">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08gp4zy">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zyzhsh">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0tyxlx7">
+        <inputEntry id="UnaryTests_1kigvzq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j0zwsa">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j1nexq">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h2cp52">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0l0dtzp">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pux8z6">
+        <inputEntry id="UnaryTests_1k589k9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cdt5tj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nm6n2q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13g6hr9">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1j0rovd">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_107xvjt">
+        <inputEntry id="UnaryTests_0gyvw0g">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rxb57d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06xa0ho">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06cgwbm">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1819ypb">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_1s0v0kq" name="Bewertung">
+    <extensionElements>
+      <biodi:bounds x="557" y="81" width="180" height="80" />
+      <biodi:edge source="Gesamt_Punktzahl">
+        <biodi:waypoints x="649" y="210" />
+        <biodi:waypoints x="650" y="161" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredDecision href="#Gesamt_Punktzahl" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1flbeoe">
+      <input id="InputClause_1m2le13" label="Socring">
+        <inputExpression id="LiteralExpression_1htgazs" typeRef="integer">
+          <text>Scoring_Gesamt</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1256ffs" label="Bewerbereignung" name="result" typeRef="string">
+        <outputValues id="UnaryTests_1gi81os">
+          <text>"sehr gut","gut","befriedigend","ausreichend"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_032gchq">
+        <description>Bewerber eignet sich sehr</description>
+        <inputEntry id="UnaryTests_09hrzxb">
+          <text>[100..120]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0h0n27l">
+          <text>"sehr gut "</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jj67d1">
+        <description>Bewerber eignet sich gut</description>
+        <inputEntry id="UnaryTests_1ludnxy">
+          <text>[80..99]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0gkksbp">
+          <text>"gut"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mgbc8y">
+        <description>Bewerber eignet sich nicht so gut</description>
+        <inputEntry id="UnaryTests_1l2wja8">
+          <text>[60..79]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ljfrzz">
+          <text>"befriedigend"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bt19ze">
+        <description>Bewerber ist ungeeignet</description>
+        <inputEntry id="UnaryTests_1hvzds1">
+          <text>&lt;=59</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gmeti4">
+          <text>"ausreichend"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="Berufserfahrung_Jahre" name="Berufserfahrung_Jahre">
+    <extensionElements>
+      <biodi:bounds x="1416" y="388" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="Bildungsgrad" name="Bildungsgrad">
+    <extensionElements>
+      <biodi:bounds x="1032" y="324" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="Abschlussnote_Studium" name="Abschlussnote_Studium">
+    <extensionElements>
+      <biodi:bounds x="1030" y="411" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="Abschlussnote_Ausbildung" name="Abschlussnote_Ausbildung">
+    <extensionElements>
+      <biodi:bounds x="964" y="484" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="Auslandserfahrung" name="Auslandserfahrung">
+    <extensionElements>
+      <biodi:bounds x="962" y="252" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="Lebenslauf" name="Lebenslauf">
+    <extensionElements>
+      <biodi:bounds x="277" y="297" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <knowledgeSource id="KnowledgeSource_1k3283o" name="Unternehmensrichtlinen für Bewerber">
+    <extensionElements>
+      <biodi:bounds x="666" y="373" width="100" height="63" />
+    </extensionElements>
+  </knowledgeSource>
+  <businessKnowledgeModel id="BusinessKnowledgeModel_0kqtncz" name="Scoringschlüssel">
+    <extensionElements>
+      <biodi:bounds x="387" y="178" width="135" height="46" />
+    </extensionElements>
+  </businessKnowledgeModel>
+  <inputData id="Zeugnisse" name="Zeugnisse">
+    <extensionElements>
+      <biodi:bounds x="164" y="357" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="Anschreiben" name="Anschreiben">
+    <extensionElements>
+      <biodi:bounds x="168" y="420" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_0w0ckue" name="Zertifikate">
+    <extensionElements>
+      <biodi:bounds x="242" y="494" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+</definitions>
