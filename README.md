@@ -11,7 +11,7 @@ Automatisierte Bewerbungsprozess mit der Hilfe von BPMN/DMN--Engine Camunda
 
 Der Weg zum anvisierten Traumjob: Dieser beginnt im Anschluss an die Stellenauswahl und anknüpfende Stellensuche grundsätzlich mit einer Online-Bewerbung. Mit der Übermittlung der Bewerbungsunterlagen an das Unternehmen haben Bewerber bereits den ersten Schritt getan und den Bewerbungsprozess spätestens zu diesem Zeitpunkt angestoßen. Doch mit dem Versand der Bewerbungsunterlagen ist es längst nicht getan – sowohl Bewerber, als auch Unternehmen müssen sich im Rahmen des  Bewerbungsprozesses nun noch weiteren Aufgaben und Herausforderungen stellen. Der Prozess soll aufzuzeigen, welche Schritte der Bewerber und das Unternehmen durchlaufen. Außerdem soll die Möglichkeit aufgezeigt werden, inwiefern einzelne Schritte technisch gelöst werden können, sodass Arbeitszeit auf Seite des Unternehmens gespart wird und dieses seinen Nutzen daraus ziehen kann.
 
-## Abgrenzung und Beschreibung der Prozesse und Entscheidungen
+## Abgrenzung und Beschreibung der Prozesse 
 
 Der Prozess „Bewerbungsprozess“ ist in BPMN (Business Process Model and Notation) modelliert und beinhaltet zwei verschiedene DMN (Decision Model and Notation) zur Eignungsprüfung. Der Prozess wird im folgenden Abschnitt pro Notation erläutert.
 Der Hauptprozess ist als BPMN modelliert und zeigt den Prozess beginnend mit dem Einreichen der Bewerbungsunterlagen bis hin zur Entscheidung des Unternehmens für oder gegen die Einstellung des Bewerbers.
@@ -41,3 +41,12 @@ Anschließend erfolgt die Prüfung des Ergebnisses. Wurde der Test nicht bestand
 
 
 ## Erläuterung fachlicher und technischer Modellierungsentscheidungen
+
+In dem BPMN Prozess wird der Bewerber erst aufgefordert seine Bewerberdaten einzugeben. Dies wird mit Hilfe von Forms dargestellt. Hierzu wurden diese mit html programmiert und in Form Key implementiert. Hier wird ein kleiner Auschnitt aus dem html-Code gezeigt: 
+
+
+
+
+Es soll grundsätzlich dem Unternehmen bei der Sichtung der Unterlagen Arbeit abnehmen. Durch die technische Implementierung mit Java werden diese Daten an das Unternehmen mittels der JavaMail Api von Camunda gesendet. Hierdurch wird der Unternehmensprozess gestartet. 
+Um zu überprüfen, ob der Bewerber die Daten richtig in die Forms eingegeben hat, werden diese von der Bewerbungsmail in die für die DMN-Tabelle nötigen Forms übertragen und geprüft. 
+Die DMN Tabelle "Bewerbung" evaluiert dann die einzelnen Fähigkeiten und Abschlüsse des Bewerbers mithilfe eines Scoring-Systems. 
