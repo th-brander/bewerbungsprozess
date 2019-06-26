@@ -18,7 +18,7 @@ Der Hauptprozess ist als BPMN modelliert und zeigt den Prozess beginnend mit dem
 Der Prozess beinhaltet 2 Pools: Wir betrachten den Prozess aus Sicht des Bewerbers als auch aus Sicht des Unternehmens. Es wird davon ausgegangen, dass der Bewerber sich durchgehend für das Unternehmen entscheidet und nicht zwischenzeitlich absagt. 
 
 
-![Alt text](/Bewerbungsprozess_BPMN.pdf.PNG?raw=true "Bewerbungsprozess_BPMN.pdf")
+![Alt text](/Bewerbungsprozess_BPMN.png?raw=true "Bewerbungsprozess_BPMN")
 
 
 Sobald der Bewerber die Bewerbung vorbereitet und sich für eine entsprechende Stelle entschieden hat, startet der Bewerbungsprozess, indem der Bewerber das Bewerbungsformular ausfüllt (User Task) und die Bewerbungsunterlagen an das Unternehmen sendet (Send Task). Infolge dessen erhält das Unternehmen die Bewerbung per Mail (Message Event). Die Bewerbungsdaten (Zeugnisse, Anschreiben, Lebenslauf, Zertifikate, Auslandserfahrung, Bildungsgrad, Ausbildungsnote sei es Studium oder Ausbildung, Berufserfahrung) werden anschließend in das System des Unternehmens übertragen (User Task) und auf Vollständigkeit überprüft. Die Daten werden in der DMN Tabelle evaluiert, sodass die Business Task eine Bewertung über den Bewerber abgibt. 
@@ -28,7 +28,14 @@ Sobald der Bewerber die Bewerbung vorbereitet und sich für eine entsprechende S
 
 
 Diese wird in der darauffolgenden User Task ausgegeben. Sollte sich rausstellen, dass der Bewerber ungeeignet für die ausgeschriebene Stelle ist, so erfolgt die Absage seitens des Unternehmens (Send Task) bei einem erreichten Scoring von unter 80 Punkten und der Bewerber erhält die Absage (Message Event), wodurch der Prozess in beiden Pools endet.
-Ist die Bewerbung jedoch ansprechend bei einer Punktzahl größer als 80, so erstellt das Unternehmen eine Einladung zum Online Test (Service Task) und sendet diese an den Bewerber (Send Task). Der Bewerber erhält die Einladung zum Online-Test (Message Event) und hat die Möglichkeit den Test durchzuführen (Sub-Prozess). Durch Aufrufen die Eingabe der Bewerberdaten wird der Test, bestehend aus Fallstudie, Programmieraufgabe, Selbstdarstellungsaufsatz, Fachwissen, Auffassungsgabe und Kommunikationsfähigkeiten gestartet. Dem Bewerber stehen hierfür 90 Minuten (in unserem Prozess zum Test 1 Minute) zur Verfügung. Nach erfolgreicher Beendigung des Tests bzw. Zeitüberschreitung (Signalevent) übermittelt der Bewerber das Testergebnis an das Unternehmen (Send Task).
+Ist die Bewerbung jedoch ansprechend bei einer Punktzahl größer als 80, so erstellt das Unternehmen eine Einladung zum Online Test (Service Task) und sendet diese an den Bewerber (Send Task). Der Bewerber erhält die Einladung zum Online-Test (Message Event) und hat die Möglichkeit den Test durchzuführen (Call-Activity).
+
+
+![Alt text](/Teilprozess_BPMN.PNG?raw=true "Teilprozess_BPMN")
+
+
+
+Durch Aufrufen die Eingabe der Bewerberdaten wird der Test, bestehend aus Fallstudie, Programmieraufgabe, Selbstdarstellungsaufsatz, Fachwissen, Auffassungsgabe und Kommunikationsfähigkeiten gestartet. Dem Bewerber stehen hierfür 90 Minuten (in unserem Prozess zum Test 1 Minute) zur Verfügung. Nach erfolgreicher Beendigung des Tests bzw. Zeitüberschreitung (Signalevent) übermittelt der Bewerber das Testergebnis an das Unternehmen (Send Task).
 Das Unternehmen erhält das Testergebnis (Message Event) und trägt das Ergebnis in das System ein (User Task). Neben den Assessmentergebnissen werden auch die Bewerberqualifikationen (Fachwissen, Kommunikationsfähigkeit, Auffassungsgabe)  bewertet, wodurch weiterhin Bewerber berücksichtigt werden, die den Test nicht in der vorgegebenen Zeit bearbeiten konnten. Mithilfe der DMN wird das Ergebnis evaluiert. 
 
 
