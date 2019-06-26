@@ -51,7 +51,7 @@ Anschließend erfolgt die Prüfung des Ergebnisses. Wurde der Test nicht bestand
 
 In dem BPMN Prozess wird der Bewerber erst aufgefordert seine Bewerberdaten einzugeben. Dies wird mit Hilfe von Forms dargestellt. Hierzu wurden diese mit html programmiert und in Form Key implementiert. Hier wird ein kleiner Auschnitt aus dem html-Code gezeigt: 
 
-![Alt text](/HTML.png?raw=true "HTML")
+![Alt text](/HTML.PNG?raw=true "HTML")
 
 Es wurde sich für html entschieden, da ansonsten in die Forms von Camunda der Datentyp "Double" nicht eingegeben werden konnte und wir somit das Problem umgehen konnte. Benötigt haben wir den Datentyp für die DMN-Tabelle. 
 
