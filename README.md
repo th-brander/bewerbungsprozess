@@ -58,4 +58,4 @@ Es wurde sich für html entschieden, da ansonsten in die Forms von Camunda der D
 Es soll grundsätzlich dem Unternehmen bei der Sichtung der Unterlagen Arbeit abnehmen. Durch die technische Implementierung mit Java werden diese Daten an das Unternehmen mittels der JavaMail Api von Camunda gesendet. Hierdurch wird der Unternehmensprozess gestartet. 
 Um zu überprüfen, ob der Bewerber die Daten richtig in die Forms eingegeben hat, werden diese von der Bewerbungsmail in die für die DMN-Tabelle nötigen Forms übertragen und geprüft. 
 Die DMN Tabelle "Bewerbung" evaluiert dann die einzelnen Fähigkeiten und Abschlüsse des Bewerbers. 
-Im End
+
