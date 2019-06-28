@@ -58,6 +58,8 @@ Es wurde sich für html entschieden, da ansonsten in die Forms von Camunda der D
 Es soll grundsätzlich dem Unternehmen bei der Sichtung der Unterlagen Arbeit abnehmen. Durch die technische Implementierung mit Java werden diese Daten an das Unternehmen mittels der JavaMail Api von Camunda gesendet. Hierdurch wird der Unternehmensprozess gestartet. 
 Um zu überprüfen, ob der Bewerber die Daten richtig in die Forms eingegeben hat, werden diese von der Bewerbungsmail in die für die DMN-Tabelle nötigen Forms übertragen und geprüft. 
 
+Jegliche Send-Tasks wurden mit Java implementiert.
+
 Die DMN Tabelle "Bewerbung" evaluiert dann die einzelnen Fähigkeiten und Abschlüsse des Bewerbers. 
 
 
@@ -68,6 +70,10 @@ Bewusst wurden weniger Datentypen verwendet als in den Anforderungen, um so die 
 
 ## Erläuterung eventueller Schwierigkeiten 
 
-In unserem Prozess gab es einige kleinere Schwierigkeiten, sowohl bei der Modellierung als auch bei der technischen Umsetzung. 
+In unserem Prozess gab es einige kleinere Schwierigkeiten, sowohl bei der Modellierung als auch bei der technischen Umsetzung. Problematisch war es die Variablen in die Forms zu übergeben, da dieses laut Konsultation vom Bewerber zum Unternehmensprozess nicht möglich sei. Die Variablen aufzurufen, wie es in der User-Task nach der DMN-Tabelle mit Javascript gelöst wurde, war durch die zwei Pools nicht möglich. Hierbei musste daher der User die Formulare immer wieder erneut ausfüllen.
+
+Während der Abschlusspräsentation gab es einen kleinen Fehler bezüglich des Outputs einer Form am Anfang des Prozesses, weshalb dann in der Email null ausgegeben wurde. Dieses Problem wurde dann behoben. 
+Ein weiterer Kritikpunkt wäre das Anzeigen der Forms zur Thematik Studium und Ausbildung. Da sowohl bei dem Studium und der Ausbildung verschiedene Eingabeflächen dem User bereitgestellt werden müssen, aufgrund der verschiedenen Datentypen (Double/String), lässt sich nicht vermeiden, dass je nach Berufsabschluss, in eines der Forms das Wort null eingegeben werden musste. Für die DMN-Tabelle war dies jedoch notwendig. 
+Eine Lösung für die Einführung von Forms, welche unter bestimmten Bedingungen nur angezeigt werden, wurde nicht gefunden. 
 
 
