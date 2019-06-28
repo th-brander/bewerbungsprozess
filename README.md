@@ -18,7 +18,7 @@ Der Hauptprozess ist als BPMN modelliert und zeigt den Prozess beginnend mit dem
 Der Prozess beinhaltet 2 Pools: Wir betrachten den Prozess aus Sicht des Bewerbers als auch aus Sicht des Unternehmens. Es wird davon ausgegangen, dass der Bewerber sich durchgehend für das Unternehmen entscheidet und nicht zwischenzeitlich absagt. 
 
 
-![Alt text](/Bewerbungsprozess_BPMN.PNG?raw=true "Bewerbungsprozess_BPMN")
+![Alt text](/Bewerbungsprozess_BPMN.png?raw=true "Bewerbungsprozess_BPMN")
 
 
 Sobald der Bewerber die Bewerbung vorbereitet und sich für eine entsprechende Stelle entschieden hat, startet der Bewerbungsprozess, indem der Bewerber das Bewerbungsformular ausfüllt (User Task) und die Bewerbungsunterlagen an das Unternehmen sendet (Send Task). Infolge dessen erhält das Unternehmen die Bewerbung per Mail (Message Event). Die Bewerbungsdaten (Zeugnisse, Anschreiben, Lebenslauf, Zertifikate, Auslandserfahrung, Bildungsgrad, Ausbildungsnote sei es Studium oder Ausbildung, Berufserfahrung) werden anschließend in das System des Unternehmens übertragen (User Task) und auf Vollständigkeit überprüft. Die Daten werden in der DMN Tabelle durch ein Scoring-System evaluiert, sodass die Business Task eine Bewertung über den Bewerber abgibt,
