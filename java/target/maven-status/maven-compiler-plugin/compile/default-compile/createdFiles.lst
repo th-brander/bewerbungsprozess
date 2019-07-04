@@ -1,0 +1,14 @@
+org\camunda\bewerbungBPMN\bewerbung\ErgebnisTest.class
+org\camunda\bewerbungBPMN\bewerbung\EinladungVersenden.class
+org\camunda\bewerbungBPMN\bewerbung\SignalEvent.class
+org\camunda\bewerbungBPMN\bewerbung\Bewerberabsagen.class
+org\camunda\bewerbungBPMN\bewerbung\FormblattBewerber.class
+org\camunda\bewerbungBPMN\bewerbung\SendEmail.class
+org\camunda\bewerbungBPMN\bewerbung\Testzeitabgelaufen.class
+org\camunda\bewerbungBPMN\bewerbung\Bewerberzusagen.class
+org\camunda\bewerbungBPMN\bewerbung\SendEmail$1.class
+org\camunda\bewerbungBPMN\bewerbung\BewerberabsagenAssesment.class
+org\camunda\bewerbungBPMN\bewerbung\BewerbungVersenden.class
+org\camunda\bewerbungBPMN\bewerbung\ServiceTask.class
+org\camunda\bewerbungBPMN\bewerbung\StartKlass.class
+org\camunda\bewerbungBPMN\bewerbung\Testergebnisse.class

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_10jvgig" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.1">
+  <bpmn:process id="teilprozess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Test beginnen">
+      <bpmn:outgoing>SequenceFlow_19duzbk</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_18murpg" name="Test abgeschlossen">
+      <bpmn:incoming>SequenceFlow_0vyrdgx</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1fkus6v" sourceRef="Task_0qz4n5u" targetRef="Task_0d5ebcn" />
+    <bpmn:userTask id="Task_0qz4n5u" name="Testfragen ausfüllen" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="Fachwissen" label="Wie ist das Fachwissen des Bewerbers?" type="string" />
+          <camunda:formField id="Kommunikationsfaehigkeiten" label="Wie sind die Kommunikationsfähigkeiten des Bewerbers?" type="string" />
+          <camunda:formField id="Auffassungsgabe" label="Wie ist die Auffassungsgabe des Bewerbers?" type="string" />
+          <camunda:formField id="Zeit" label="Zeit eingehalten?" type="boolean" defaultValue="true" />
+          <camunda:formField id="Selbstdarstellung_Aufsatz" label="Wie viele Punkte hat der Bewerber im Aufsatz erreicht?" type="long" />
+          <camunda:formField id="Programmieraufgabe" label="Wie viele Punkte hat der Bewerber in der Programmieraufgabe erreicht ? " type="long" />
+          <camunda:formField id="Fallstudie" label="Wie viele Punkte hat der Bewerber in der Fallstudie erreicht?" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1l8m7qb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1fkus6v</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_19duzbk" sourceRef="StartEvent_1" targetRef="Task_0wsom6o" />
+    <bpmn:sequenceFlow id="SequenceFlow_1l8m7qb" sourceRef="Task_0wsom6o" targetRef="Task_0qz4n5u" />
+    <bpmn:boundaryEvent id="BoundaryEvent_1hyqzh7" name="90 Minuten " attachedToRef="Task_0qz4n5u">
+      <bpmn:outgoing>SequenceFlow_0w4kt3j</bpmn:outgoing>
+      <bpmn:timerEventDefinition>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:userTask id="Task_0wsom6o" name="Testbogen aufrufen" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="Testbeginnen" label="Soll der Test starten?" type="boolean" defaultValue="true" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_19duzbk</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1l8m7qb</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0vyrdgx" sourceRef="Task_0d5ebcn" targetRef="EndEvent_18murpg" />
+    <bpmn:userTask id="Task_0d5ebcn" name="Test bestätigen" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="Testfertig " label="Ist der Test fertiggestellt ? " type="boolean" defaultValue="true" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1fkus6v</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0vyrdgx</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0w4kt3j" sourceRef="BoundaryEvent_1hyqzh7" targetRef="Task_1rt5wrt" />
+    <bpmn:userTask id="Task_1rt5wrt" name="Zeit bestätigen" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="Zeit" label="Zeit eingehalten?" type="boolean" defaultValue="false" />
+          <camunda:formField id="Name" label="Bitte tragen Sie Ihren Namen ein:" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0w4kt3j</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1togcyl</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_0pij7ti" name="Test fehlgeschlagen">
+      <bpmn:incoming>SequenceFlow_1togcyl</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1togcyl" sourceRef="Task_1rt5wrt" targetRef="EndEvent_0pij7ti" />
+  </bpmn:process>
+  <bpmn:signal id="Signal_1kw0dmt" name="Testabgebrochen" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="teilprozess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="170" y="114" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="155" y="157" width="69" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_18murpg_di" bpmnElement="EndEvent_18murpg">
+        <dc:Bounds x="745" y="114" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="727" y="157" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fkus6v_di" bpmnElement="SequenceFlow_1fkus6v">
+        <di:waypoint x="527" y="132" />
+        <di:waypoint x="586" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_08jdgw3_di" bpmnElement="Task_0qz4n5u">
+        <dc:Bounds x="427" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_19duzbk_di" bpmnElement="SequenceFlow_19duzbk">
+        <di:waypoint x="206" y="132" />
+        <di:waypoint x="266" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1l8m7qb_di" bpmnElement="SequenceFlow_1l8m7qb">
+        <di:waypoint x="366" y="132" />
+        <di:waypoint x="427" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BoundaryEvent_02yhkk9_di" bpmnElement="BoundaryEvent_1hyqzh7">
+        <dc:Bounds x="462" y="154" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="412" y="198" width="55" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1f75x22_di" bpmnElement="Task_0wsom6o">
+        <dc:Bounds x="266" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vyrdgx_di" bpmnElement="SequenceFlow_0vyrdgx">
+        <di:waypoint x="686" y="132" />
+        <di:waypoint x="745" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1umdkg1_di" bpmnElement="Task_0d5ebcn">
+        <dc:Bounds x="586" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0w4kt3j_di" bpmnElement="SequenceFlow_0w4kt3j">
+        <di:waypoint x="480" y="190" />
+        <di:waypoint x="480" y="252" />
+        <di:waypoint x="586" y="252" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0jtuei3_di" bpmnElement="Task_1rt5wrt">
+        <dc:Bounds x="586" y="212" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0pij7ti_di" bpmnElement="EndEvent_0pij7ti">
+        <dc:Bounds x="745" y="234" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="726" y="277" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1togcyl_di" bpmnElement="SequenceFlow_1togcyl">
+        <di:waypoint x="686" y="252" />
+        <di:waypoint x="745" y="252" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
